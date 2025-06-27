@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Генеративный ИИ</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin: 30px 0 10px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .video-container {
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .plyr {
+            border-radius: 10px;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+            color: #ccc;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Вступление в курс</h1>
+
+<div class="video-container">
+    <video id="player" controls poster="https://files2.heygen.ai/aws_pacific/avatar_tmp/bfe5da5bbadc4aae8ee3433882c5f037/e8be057162ed4207bb034f8cae5ccd20.jpeg?Expires=1751278747&Signature=aE163b6v-Ud1Do29j-KvpoKIgTfgEOSx-NrB5RGAbVbYka-x7jGgOZDN-0MiSojkvBClsnnYw4GTHOwdhOT9e-oAlVCLA9q1zl~tMz5o6S6puurbLcvwF~nwovoP-42Ttm8hJn6l812twHOfp5-qWSKmQm4b25duzty5kswHaOAqJiiPILiL6FGyj~air6gc23KBbWuqLcjq3w3b7IZR2ZlMOMdQUFf4STrqXmmP5mpHfbap2W26~-4MEUIdiIMDYWuzT8cxCJeZFiYdMV2WjXiwwmnoKyrMuRO7b~x5fjoHhsEYbdLtHLUWwIiQ-A3~tGlUhBfiWb4UcIjLLJm8nw__&Key-Pair-Id=K38HBHX5LX3X2H">
+        <source src="https://resource2.heygen.ai/video/transcode/e8be057162ed4207bb034f8cae5ccd20/1280x720.mp4?response-content-disposition=attachment%3B+filename%2A%3DUTF-8%27%27%25D0%25A7%25D1%2582%25D0%25BE%2520%25D1%2582%25D0%25B0%25D0%25BA%25D0%25BE%25D0%25B5%2520%25D0%25B3%25D0%25B5%25D0%25BD%25D0%25B5%25D1%2580%25D0%25B0%25D1%2582%25D0%25B8%25D0%25B2%25D0%25BD%25D1%258B%25D0%25B9%2520%25D0%2598%25D0%2598%253F.mp4%3B" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+</div>
+
+<div class="description">
+    <p>Над видео
+
+        Введение в ваш учебный путь <strong>Учебный путь «Лидер по генеративному ИИ в Google Cloud»</strong>
+        Этот учебный путь подготовит вас к сертификации «Лидер по генеративному ИИ в Google Cloud». Он рассчитан на людей с разным опытом и из разных областей — технические знания не требуются.
+
+        Курс «Генеративный ИИ: больше, чем чат-бот» — это первый курс в учебном пути, и для его прохождения не нужны предварительные знания.
+
+        Чтобы получить максимальную пользу от курса, рекомендуем войти в свой аккаунт Google, чтобы легко получить доступ к инструментам, необходимым для выполнения заданий. Если у вас нет аккаунта Google, перейдите на страницу регистрации аккаунта Google.
+
+        Под видео
+
+        Что вы узнаете на этом курсе
+        В этом курсе вы получите ответы на следующие вопросы:
+
+        Что такое генеративный ИИ и для чего его можно использовать?
+
+        Как генеративный ИИ может трансформировать бизнес?
+
+        Как Google Cloud может поддержать ваш путь внедрения генеративного ИИ?
+
+        Какие стратегии можно использовать для успешной реализации генеративного ИИ в вашем бизнесе?</p>
+</div>
+
+<button class="back-button" onclick="history.back()">← Назад</button>
+
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script>
+    const player = new Plyr('#player', {
+        ratio: '16:9',
+        autoplay: false,
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
+        settings: ['speed'],
+        speed: {
+            selected: 1,
+            options: [0.5, 1, 1.25, 1.5, 2]
+        },
+        i18n: {
+            speed: 'Скорость',
+            rewind: 'Назад',
+            play: 'Воспроизвести',
+            pause: 'Пауза',
+            volume: 'Громкость',
+            settings: 'Настройки',
+            fullscreen: 'На весь экран'
+        }
+    });
+</script>
+
+</body>
+</html>
