@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #00fff7;
+            padding: 20px;
+            margin: 0;
+            animation: bgMove 20s ease infinite;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00fff7, 0 0 20px #0ff;
+        }
+
+        .question {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 255, 247, 0.05);
+            border: 1px solid #00fff7;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 255, 247, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .answers button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px 18px;
+            border: 1px solid #00fff7;
+            border-radius: 8px;
+            background: transparent;
+            color: #00fff7;
+            font-size: 1em;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(0, 255, 247, 0.2);
+        }
+
+        .answers button:hover {
+            background-color: rgba(0, 255, 247, 0.1);
+            transform: scale(1.02);
+        }
+
+        .answers button.correct {
+            background-color: rgba(0, 255, 128, 0.2);
+            border-color: #00ff80;
+            color: #00ff80;
+        }
+
+        .answers button.wrong {
+            background-color: rgba(255, 64, 64, 0.2);
+            border-color: #ff4040;
+            color: #ff4040;
+        }
+
+        .answers button.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<h2>🤖 AI Quiz</h2>
+<div id="quiz"></div>
+
+<script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    const questions = [
+        {
+            text: "Какой язык чаще всего используется в AI-разработке?",
+            answers: ["C++", "Python", "Java", "Ruby"],
+            correct: 1
+        },
+        {
+            text: "Что означает 'GPT' в ChatGPT?",
+            answers: ["General Purpose Transformer", "Generative Pre-Trained Transformer", "Google Powered Tool", "Global Pattern Training"],
+            correct: 1
+        },
+        {
+            text: "Что такое нейронная сеть?",
+            answers: ["Аппаратное устройство", "Алгоритм поиска", "Математическая модель, вдохновлённая мозгом", "Тип базы данных"],
+            correct: 2
+        },
+        {
+            text: "Кто основал OpenAI?",
+            answers: ["Илон Маск", "Марк Цукерберг", "Сатья Наделла", "Билл Гейтс"],
+            correct: 0
+        }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+
+    questions.forEach((q, index) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+
+        const h3 = document.createElement('h3');
+        h3.textContent = `${index + 1}. ${q.text}`;
+        div.appendChild(h3);
+
+        const answersDiv = document.createElement('div');
+        answersDiv.className = 'answers';
+
+        q.answers.forEach((answer, i) => {
+            const btn = document.createElement('button');
+            btn.textContent = answer;
+            btn.onclick = () => {
+                const buttons = answersDiv.querySelectorAll('button');
+                buttons.forEach(b => b.classList.add('disabled'));
+                if (i === q.correct) {
+                    btn.classList.add('correct');
+                } else {
+                    btn.classList.add('wrong');
+                    buttons[q.correct].classList.add('correct');
+                }
+            };
+            answersDiv.appendChild(btn);
+        });
+
+        div.appendChild(answersDiv);
+        quizContainer.appendChild(div);
+    });
+</script>
+
+</body>
+</html>
